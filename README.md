@@ -54,5 +54,5 @@ sudo docker run -it --gpus all \
 ### Execute the initialization script to populate the storage pipeline with 100k eCommerce actions using Merlin's synthetic transactional engine
 
 ```python
-python3 src/etl_pipeline.py
+python src/generate_data.py
 ```
