@@ -1,8 +1,20 @@
 import os
+
+# Completely disable TensorFlow's GPU access to stop the framework collision
+os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
+os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"
+
 import nvtabular as nvt
 from nvtabular.ops import Categorify, FillMissing, AddTags
 from merlin.schema.tags import Tags
 from merlin.io.dataset import Dataset
+
+'''
+This code uses NVTabular (NVIDIA's GPU-accelerated data processing library) to perform ETL (Extract, Transform, Load) on recommendation system data. 
+The goal is to take raw user-item interaction data and transform it into a format ready for training a machine learning model, particularly for click-through rate (CTR) prediction.
+In production recommendation systems, there are billions of interactions, hundreds of features and models need fresh data constantly.
+NVTabular solves this by using GPU acceleration to process massive datasets 10-100x faster than traditional CPU-based tools.
+'''
 
 def run_production_etl(data_dir="/workspace/project/data/"):
     print("Initializing GPU-Accelerated NVTabular ETL Engine...")
